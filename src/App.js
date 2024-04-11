@@ -1,18 +1,22 @@
+// App.js
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'; // Import Routes, Route, and Link
 import './App.css';
-import Dashboard from './Components/Dashboard'; // Import the Dashboard component
-import PaymentSuccess from './Components/PaymentSuccess'; // Import the PaymentSuccess component
+import Dashboard from './Components/Dashboard';
+import PaymentSuccess from './Components/PaymentSuccess';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Switch>
-          <Route path="/" exact component={Dashboard} />
-          <Route path="/payment-success" component={PaymentSuccess} />
-        </Switch>
+        <Link to="/">Dashboard</Link> {/* Add navigation links */}
+        <Link to="/payment-success">Payment Success</Link> {/* Add navigation links */}
+
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
+        </Routes>
       </div>
     </Router>
   );
