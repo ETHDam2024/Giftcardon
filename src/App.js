@@ -1,25 +1,21 @@
+
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import Dashboard from './Components/Dashboard'; // Import the Dashboard component
+import PaymentSuccess from './Components/PaymentSuccess'; // Import the PaymentSuccess component
 
 function App() {
-  const paymentLink = 'https://buy.stripe.com/test_7sI17Q6KA1Ei00M144'; // Payment Link URL from Stripe
-
   return (
-    <div className="App">
-      <h1>Gift Card</h1>
-      <div className="gift-card">
-        <img className="gift-card-image" src="/pexels-lil-artsy-1390433.jpg" alt="Gift Card" />
-        <a className="buy-button" href={paymentLink} target="_blank" rel="noopener noreferrer">Buy Gift Card</a>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/" exact component={Dashboard} />
+          <Route path="/payment-success" component={PaymentSuccess} />
+        </Switch>
       </div>
-    </div>
+    </Router>
   );
 }
-
-
-function redirectToStripe() {
-  // Redirect to Stripe payment page
-  window.location.href = 'https://stripe.com'; // Replace with your Stripe payment URL
-}
-
 
 export default App;
