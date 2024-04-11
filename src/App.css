@@ -8,7 +8,7 @@
 }
 
 .gift-card img {
-  max-width: 50%; /* Limit the width of the image */
+  max-width: 100%; /* Limit the width of the image */
   height: auto; /* Maintain the image's aspect ratio */
 }
 
