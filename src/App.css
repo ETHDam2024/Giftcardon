@@ -2,37 +2,18 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.gift-card {
+  display: flex; /* Use flexbox layout */
+  align-items: center; /* Center items vertically */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.gift-card img {
+  max-width: 50%; /* Limit the width of the image */
+  height: auto; /* Maintain the image's aspect ratio */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.buy-button {
+  margin-left: 20px; /* Add margin to the left side of the button */
+  font-size: 1.5rem; /* Increase the font size */
+  padding: 10px 20px; /* Add padding around the button content */
 }
