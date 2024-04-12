@@ -114,4 +114,5 @@ async function generateAndVerifyProof(commitments, commitment) {
 }
 // function getVerifierWASM() {
 //     return loadWebAssembly().buffer
-// }
+// 
+module.exports = {generateAndVerifyProof};
