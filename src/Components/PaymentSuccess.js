@@ -1,15 +1,11 @@
 
 import React from 'react';
-
-import { useRef, useState } from 'react';
-
-// Import necessary dependencies for integrating the CommitmentUtils.js script
+import { useRef, useState, useEffect } from 'react';
+// import {generateCommitment} from "./CommitmentUtils"
+import { buildMimcSponge } from 'https://cdn.jsdelivr.net/npm/circomlibjs@0.1.7/+esm'
 import { ethers } from 'ethers'; // Importing ethers library
-import snarkjs from 'snarkjs'; // Importing snarkjs library
-import randomBytes from 'random-bytes'; // Importing random-bytes library
-import {WebView} from "react-native-webview"
-import HTML from "./public/Commitment"
-  const webViewRef = useRef(null);
+// import snarkjs from 'snarkjs'; // Importing snarkjs library
+
 
 function PaymentSuccess() {
   const [commitment, setCommitment] = useState(null);
@@ -20,6 +16,7 @@ function PaymentSuccess() {
       try {
         // Generate the commitment
         const newCommitment = await generateCommitment();
+        console.log(newCommitment);
 
         // Handle the generated commitment
         setCommitment(newCommitment);
@@ -34,22 +31,25 @@ function PaymentSuccess() {
     generateCommitmentAsync();
   }, []);
 
-  // Function to handle messages received from WebView
-  const handleMessage = (event) => {
-    console.log("data:", event.nativeEvent.data)
-    if(event.nativeEvent.data === undefined || event.nativeEvent.data === "data received:"){
-      return
-    }
-    // return
-    if(JSON.parse(event.nativeEvent.data).nullifier){
-      const commitment = JSON.parse(event.nativeEvent.data)
-      console.log('Commitment added to chain:', commitment);
-      setCmt(commitment)
-    } 
-    else{
-      console.log('Proof from WebView:', event.nativeEvent.data);
-      setProof(JSON.parse(event.nativeEvent.data))
-    }
+  let randomBytes;
+  randomBytes = function(length) {
+      const buffer = new Uint8Array(length);
+      window.crypto.getRandomValues(buffer);
+      return buffer;
+  };
+
+  async function generateCommitment() {
+      const mimc = await buildMimcSponge();
+      const nullifier = ethers.toBigInt(randomBytes(31)).toString();
+      const secret = ethers.toBigInt(randomBytes(31)).toString();
+      const commitment = mimc.F.toString(mimc.multiHash([nullifier, secret]));
+      const nullifierHash = mimc.F.toString(mimc.multiHash([nullifier]));
+      return {
+          nullifier: nullifier,
+          secret: secret,
+          commitment: commitment,
+          nullifierHash: nullifierHash
+      };
   }
 
   return (
@@ -60,11 +60,6 @@ function PaymentSuccess() {
         <div>
           <p>Commitment: {commitment.commitment}</p>
           {/* Display other commitment details if needed */}
-          <WebView
-      ref={webViewRef}
-      source={HTML} // URL of the server serving the HTML file
-      onMessage={handleMessage}
-    />
         </div>
       )}
       {/* Add additional content as needed */}

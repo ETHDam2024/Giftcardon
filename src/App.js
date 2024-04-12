@@ -4,23 +4,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import Dashboard from './Components/Dashboard';
 import PaymentSuccess from './Components/PaymentSuccess';
-import {WebView} from "react-native-webview"
-import HTML from "./public/test.html"
-const MyWebView = () => {
-  const webViewRef = useRef(null);
-  const [cmt, setCmt] = useState({nullifier:"", commitment:"", nullifierHash: "", secret:""})
-  const [proof, setProof] = useState({root:"", pathIndices:[], pathElements: []})
-
-  const genProof = () => {
-    console.log("proof button pressed", cmt)
-    webViewRef.current.injectJavaScript(`window.postMessage(${JSON.stringify(cmt)}, "*");`);
-    return 
-  }
-  
-  const genCommitment = () => {
-    console.log("button pressed")
-    webViewRef.current.injectJavaScript(`window.postMessage("test", "*");`);
-  }
 
 function App() {
   return (
