@@ -15,9 +15,9 @@ function PaymentSuccess() {
         const newCommitment = await generateCommitment();
         console.log(newCommitment);
 
-        // adding the commitment to the blockchain (the Merkletree is in the blockchain)
-        await addCommitmentToContract(newCommitment.commitment)
-        console.log("Commitment has been added")
+        // // adding the commitment to the blockchain (the Merkletree is in the blockchain)
+        // await addCommitmentToContract(newCommitment.commitment)
+        // console.log("Commitment has been added")
 
         // Handle the generated commitment
         setCommitment(newCommitment);
@@ -58,7 +58,6 @@ function PaymentSuccess() {
       <h2>Payment Successful!</h2>
       <p>Thank you for your purchase. Your payment has been successfully processed.</p>
       <p>Important: Note down the Nullifier and Secret in a safe way as these inputs are required upon redeeming the Giftcard</p>
-
       {commitment && (
         <div>
           <p>Commitment: {commitment.commitment}</p>
