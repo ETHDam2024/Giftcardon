@@ -1,11 +1,8 @@
 
 import React from 'react';
 import { useRef, useState, useEffect } from 'react';
-// import {generateCommitment} from "./CommitmentUtils"
 import { buildMimcSponge } from 'https://cdn.jsdelivr.net/npm/circomlibjs@0.1.7/+esm'
 import { ethers } from 'ethers'; // Importing ethers library
-// import snarkjs from 'snarkjs'; // Importing snarkjs library
-
 
 function PaymentSuccess() {
   const [commitment, setCommitment] = useState(null);
@@ -56,10 +53,13 @@ function PaymentSuccess() {
     <div>
       <h2>Payment Successful!</h2>
       <p>Thank you for your purchase. Your payment has been successfully processed.</p>
+      <p>Important: Note down the Nullifier and Secret in a safe way as these inputs are required upon redeeming the Giftcard</p>
+
       {commitment && (
         <div>
           <p>Commitment: {commitment.commitment}</p>
-          {/* Display other commitment details if needed */}
+          <p>Nullifier: {commitment.nullifier}</p>
+          <p>Secret: {commitment.secret}</p>
         </div>
       )}
       {/* Add additional content as needed */}

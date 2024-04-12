@@ -11,6 +11,7 @@ function Dashboard() {
       <div className="gift-card">
         <img className="gift-card-image" src="/Picture1.png" alt="Gift Card" />
         <a className="buy-button" href={paymentLink} target="_blank" rel="noopener noreferrer">Buy Gift Card</a>
+        < a href="RedeemGiftcard.js">Redeem Giftcard</a>
       </div>
     </div>
   );
