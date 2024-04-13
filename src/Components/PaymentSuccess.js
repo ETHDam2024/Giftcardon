@@ -14,7 +14,7 @@ function PaymentSuccess() {
         const newCommitment = await generateCommitment();
         console.log(newCommitment);
 
-        // // adding the commitment to the blockchain (the Merkletree is in the blockchain)
+        // // adding the commitment to the blockchain 
         await addCommitmentToContract(newCommitment.commitment)
         // console.log("Commitment has been added")
 // 
