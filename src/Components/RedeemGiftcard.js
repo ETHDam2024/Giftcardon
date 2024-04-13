@@ -103,7 +103,7 @@ async function getCommitmentsFromContract() {
     console.log(latest)
     let commitments = []
     for(let i=start;i<latest;i+=100){
-        const events = await contract.queryFilter(contract.filters.Commit(), i, i+100)
+        const events = await contract.queryFilter(contract.filters.Commit(), i, i+99)
         console.log(events)
         for (let event of events) {
             commitments.push(ethers.toBigInt(event.args.commitment).toString())
