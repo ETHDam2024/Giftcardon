@@ -73,7 +73,7 @@ function PaymentSuccess() {
 export default PaymentSuccess;
 
 async function addCommitmentToContract(commitment){
-  const SPcontractAddress = "0xa8dBc444C5e573e5cD3A3Bd004DC9B44bCf96F07"
+  const SPcontractAddress = "0xFc0dd5bD2e980ae3b4E51E39ce74667fc97ED28e"
   const provider = new ethers.JsonRpcProvider("https://polygon-mumbai.g.alchemy.com/v2/5hmudZ-Nalv--bEN3KMKHtxZKzklAua1")
   const ABI = [
       {

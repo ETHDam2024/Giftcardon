@@ -101,7 +101,7 @@ async function getCommitmentsFromContract() {
         "event Commit(bytes32 indexed commitment,uint32 leafIndex,uint256 timestamp)"
     ];
     console.log("added commitment")
-    const contract = new ethers.Contract("0x3542Cbdd6c0948A0f4f82F2a1ECb33FA4f55f242", abi, provider)
+    const contract = new ethers.Contract("0xFc0dd5bD2e980ae3b4E51E39ce74667fc97ED28e", abi, provider)
     const latest = await provider.getBlockNumber()
     const start = 3271451
     console.log(latest)
