@@ -102,13 +102,14 @@ async function generateAndVerifyProof(commitments, commitment, mimc) {
         "https://proof-files.vercel.app/giftcard.wasm", 
         "https://proof-files.vercel.app/giftcard_0001.zkey"    
     )
+    console.log("proof success")
     const cd = convertCallData(await snarkjs.groth16.exportSolidityCallData(proof, publicSignals));
     return {
-        nullifierHash: publicSignals[0],
-        root: publicSignals[1],
-        proof_a: cd.a,
-        proof_b: cd.b,
-        proof_c: cd.c
+        nullifierHash: ethers.toBigInt(publicSignals[0]),
+        root: ethers.toBigInt(publicSignals[1]),
+        proof_a: ethers.toBigInt(cd.a),
+        proof_b: ethers.toBigInt(cd.b),
+        proof_c: ethers.toBigInt(cd.c)
     }
 }
 // function getVerifierWASM() {

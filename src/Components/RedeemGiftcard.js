@@ -99,7 +99,7 @@ async function getCommitmentsFromContract() {
     console.log("added commitment")
     const contract = new ethers.Contract("0xFc0dd5bD2e980ae3b4E51E39ce74667fc97ED28e", abi, provider)
     const latest = await provider.getBlockNumber()
-    const start = 3271451
+    const start = 3283386
     console.log(latest)
     let commitments = []
     for(let i=start;i<latest;i+=100){
