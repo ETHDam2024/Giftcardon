@@ -76,316 +76,458 @@ async function addCommitmentToContract(commitment){
   const SPcontractAddress = "0xFc0dd5bD2e980ae3b4E51E39ce74667fc97ED28e"
   const provider = new ethers.JsonRpcProvider("https://sapphire.oasis.io")
   const ABI = [
-      {
-          "inputs": [
-              {
-                  "internalType": "uint32",
-                  "name": "_levels",
-                  "type": "uint32"
-              },
-              {
-                  "internalType": "contract IHasher",
-                  "name": "_hasher",
-                  "type": "address"
-              },
-              {
-                  "internalType": "contract IVerifier",
-                  "name": "_verifier",
-                  "type": "address"
-              },
-              {
-                  "internalType": "contract IMetadata",
-                  "name": "_metadataContract",
-                  "type": "address"
-              },
-              {
-                  "internalType": "contract IServiceProviders",
-                  "name": "_spsContract",
-                  "type": "address"
-              },
-              {
-                  "internalType": "contract IPalo",
-                  "name": "_fundsContract",
-                  "type": "address"
-              },
-              {
-                  "internalType": "contract IAyala",
-                  "name": "_ayalaContract",
-                  "type": "address"
-              },
-              {
-                  "internalType": "string",
-                  "name": "_serviceProviderENS",
-                  "type": "string"
-              },
-              {
-                  "internalType": "string",
-                  "name": "_metaData",
-                  "type": "string"
-              }
-          ],
-          "stateMutability": "payable",
-          "type": "constructor"
-      },
-      {
-          "inputs": [],
-          "name": "INDEX_OF_METADATA",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "SERVICE_PROVIDER_ENS",
-          "outputs": [
-              {
-                  "internalType": "string",
-                  "name": "",
-                  "type": "string"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "_productID",
-                  "type": "uint256"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_setupFee",
-                  "type": "uint256"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_monthlyFee",
-                  "type": "uint256"
-              },
-              {
-                  "internalType": "string",
-                  "name": "_metaData",
-                  "type": "string"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_productType",
-                  "type": "uint256"
-              }
-          ],
-          "name": "addProduct",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "_commitmentDeposit",
-                  "type": "uint256"
-              }
-          ],
-          "name": "createCommitmentToRegisterENS",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "_commitmentDeposit",
-                  "type": "uint256"
-              }
-          ],
-          "name": "createSubscription",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "uint256[2]",
-                  "name": "_proof_a",
-                  "type": "uint256[2]"
-              },
-              {
-                  "internalType": "uint256[2][2]",
-                  "name": "_proof_b",
-                  "type": "uint256[2][2]"
-              },
-              {
-                  "internalType": "uint256[2]",
-                  "name": "_proof_c",
-                  "type": "uint256[2]"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_nullifierHash",
-                  "type": "uint256"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_root",
-                  "type": "uint256"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_productIDHash",
-                  "type": "uint256"
-              }
-          ],
-          "name": "endSubscription",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "_productID",
-                  "type": "uint256"
-              }
-          ],
-          "name": "getProductMetaData",
-          "outputs": [
-              {
-                  "internalType": "string",
-                  "name": "",
-                  "type": "string"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "string",
-                  "name": "ens",
-                  "type": "string"
-              }
-          ],
-          "name": "getRemainingSubscriptionUserTime",
-          "outputs": [
-              {
-                  "internalType": "int256",
-                  "name": "",
-                  "type": "int256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "getServiceProviderMetadata",
-          "outputs": [
-              {
-                  "internalType": "string",
-                  "name": "",
-                  "type": "string"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "uint256[2]",
-                  "name": "_proof_a",
-                  "type": "uint256[2]"
-              },
-              {
-                  "internalType": "uint256[2][2]",
-                  "name": "_proof_b",
-                  "type": "uint256[2][2]"
-              },
-              {
-                  "internalType": "uint256[2]",
-                  "name": "_proof_c",
-                  "type": "uint256[2]"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_nullifierHash",
-                  "type": "uint256"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_root",
-                  "type": "uint256"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_productIDHash",
-                  "type": "uint256"
-              },
-              {
-                  "internalType": "string",
-                  "name": "ens",
-                  "type": "string"
-              }
-          ],
-          "name": "startSubscription",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "uint256[2]",
-                  "name": "_proof_a",
-                  "type": "uint256[2]"
-              },
-              {
-                  "internalType": "uint256[2][2]",
-                  "name": "_proof_b",
-                  "type": "uint256[2][2]"
-              },
-              {
-                  "internalType": "uint256[2]",
-                  "name": "_proof_c",
-                  "type": "uint256[2]"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_nullifierHash",
-                  "type": "uint256"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_root",
-                  "type": "uint256"
-              },
-              {
-                  "internalType": "string",
-                  "name": "_userProduct",
-                  "type": "string"
-              }
-          ],
-          "name": "updateNewServiceProvider",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      }
-      ]
+    {
+                    "inputs": [
+                                    {
+                                                    "internalType": "uint32",
+                                                    "name": "_levels",
+                                                    "type": "uint32"
+                                    },
+                                    {
+                                                    "internalType": "contract IHasher",
+                                                    "name": "_hasher",
+                                                    "type": "address"
+                                    },
+                                    {
+                                                    "internalType": "contract IVerifier",
+                                                    "name": "_verifier",
+                                                    "type": "address"
+                                    },
+                                    {
+                                                    "internalType": "contract ICredit",
+                                                    "name": "_creditAddress",
+                                                    "type": "address"
+                                    }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "constructor"
+    },
+    {
+                    "anonymous": false,
+                    "inputs": [
+                                    {
+                                                    "indexed": true,
+                                                    "internalType": "bytes32",
+                                                    "name": "commitment",
+                                                    "type": "bytes32"
+                                    },
+                                    {
+                                                    "indexed": false,
+                                                    "internalType": "uint32",
+                                                    "name": "leafIndex",
+                                                    "type": "uint32"
+                                    },
+                                    {
+                                                    "indexed": false,
+                                                    "internalType": "uint256",
+                                                    "name": "timestamp",
+                                                    "type": "uint256"
+                                    }
+                    ],
+                    "name": "Commit",
+                    "type": "event"
+    },
+    {
+                    "inputs": [
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "_commitmentGiftcard",
+                                                    "type": "uint256"
+                                    }
+                    ],
+                    "name": "createGiftcard",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+    },
+    {
+                    "inputs": [
+                                    {
+                                                    "internalType": "uint256[2]",
+                                                    "name": "_proof_a",
+                                                    "type": "uint256[2]"
+                                    },
+                                    {
+                                                    "internalType": "uint256[2][2]",
+                                                    "name": "_proof_b",
+                                                    "type": "uint256[2][2]"
+                                    },
+                                    {
+                                                    "internalType": "uint256[2]",
+                                                    "name": "_proof_c",
+                                                    "type": "uint256[2]"
+                                    },
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "_nullifierHash",
+                                                    "type": "uint256"
+                                    },
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "_root",
+                                                    "type": "uint256"
+                                    }
+                    ],
+                    "name": "redeemGiftcard",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+    },
+    {
+                    "anonymous": false,
+                    "inputs": [
+                                    {
+                                                    "indexed": false,
+                                                    "internalType": "address",
+                                                    "name": "theAddress",
+                                                    "type": "address"
+                                    }
+                    ],
+                    "name": "whosAddress",
+                    "type": "event"
+    },
+    {
+                    "inputs": [
+                                    {
+                                                    "internalType": "bytes32",
+                                                    "name": "",
+                                                    "type": "bytes32"
+                                    }
+                    ],
+                    "name": "commitments",
+                    "outputs": [
+                                    {
+                                                    "internalType": "bool",
+                                                    "name": "",
+                                                    "type": "bool"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [],
+                    "name": "creditContract",
+                    "outputs": [
+                                    {
+                                                    "internalType": "contract ICredit",
+                                                    "name": "",
+                                                    "type": "address"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [],
+                    "name": "currentRootIndex",
+                    "outputs": [
+                                    {
+                                                    "internalType": "uint32",
+                                                    "name": "",
+                                                    "type": "uint32"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [],
+                    "name": "FEES_AMOUNT",
+                    "outputs": [
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "",
+                                                    "type": "uint256"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [],
+                    "name": "FIELD_SIZE",
+                    "outputs": [
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "",
+                                                    "type": "uint256"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "",
+                                                    "type": "uint256"
+                                    }
+                    ],
+                    "name": "filledSubtrees",
+                    "outputs": [
+                                    {
+                                                    "internalType": "bytes32",
+                                                    "name": "",
+                                                    "type": "bytes32"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [],
+                    "name": "getLastRoot",
+                    "outputs": [
+                                    {
+                                                    "internalType": "bytes32",
+                                                    "name": "",
+                                                    "type": "bytes32"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "level",
+                                                    "type": "uint256"
+                                    }
+                    ],
+                    "name": "getLevelHashes",
+                    "outputs": [
+                                    {
+                                                    "internalType": "bytes32[]",
+                                                    "name": "",
+                                                    "type": "bytes32[]"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [],
+                    "name": "GIFT_CARD_AMOUNT",
+                    "outputs": [
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "",
+                                                    "type": "uint256"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [],
+                    "name": "hasher",
+                    "outputs": [
+                                    {
+                                                    "internalType": "contract IHasher",
+                                                    "name": "",
+                                                    "type": "address"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "_left",
+                                                    "type": "uint256"
+                                    },
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "_right",
+                                                    "type": "uint256"
+                                    }
+                    ],
+                    "name": "hashLeftRight",
+                    "outputs": [
+                                    {
+                                                    "internalType": "bytes32",
+                                                    "name": "",
+                                                    "type": "bytes32"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [
+                                    {
+                                                    "internalType": "bytes32",
+                                                    "name": "_root",
+                                                    "type": "bytes32"
+                                    }
+                    ],
+                    "name": "isKnownRoot",
+                    "outputs": [
+                                    {
+                                                    "internalType": "bool",
+                                                    "name": "",
+                                                    "type": "bool"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "",
+                                                    "type": "uint256"
+                                    },
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "",
+                                                    "type": "uint256"
+                                    }
+                    ],
+                    "name": "levelHashes",
+                    "outputs": [
+                                    {
+                                                    "internalType": "bytes32",
+                                                    "name": "",
+                                                    "type": "bytes32"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [],
+                    "name": "levels",
+                    "outputs": [
+                                    {
+                                                    "internalType": "uint32",
+                                                    "name": "",
+                                                    "type": "uint32"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [],
+                    "name": "nextIndex",
+                    "outputs": [
+                                    {
+                                                    "internalType": "uint32",
+                                                    "name": "",
+                                                    "type": "uint32"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [
+                                    {
+                                                    "internalType": "bytes32",
+                                                    "name": "",
+                                                    "type": "bytes32"
+                                    }
+                    ],
+                    "name": "nullifiers",
+                    "outputs": [
+                                    {
+                                                    "internalType": "bool",
+                                                    "name": "",
+                                                    "type": "bool"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [],
+                    "name": "ROOT_HISTORY_SIZE",
+                    "outputs": [
+                                    {
+                                                    "internalType": "uint32",
+                                                    "name": "",
+                                                    "type": "uint32"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "",
+                                                    "type": "uint256"
+                                    }
+                    ],
+                    "name": "roots",
+                    "outputs": [
+                                    {
+                                                    "internalType": "bytes32",
+                                                    "name": "",
+                                                    "type": "bytes32"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [],
+                    "name": "verifier",
+                    "outputs": [
+                                    {
+                                                    "internalType": "contract IVerifier",
+                                                    "name": "",
+                                                    "type": "address"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [],
+                    "name": "ZERO_VALUE",
+                    "outputs": [
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "",
+                                                    "type": "uint256"
+                                    }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+    },
+    {
+                    "inputs": [
+                                    {
+                                                    "internalType": "uint256",
+                                                    "name": "i",
+                                                    "type": "uint256"
+                                    }
+                    ],
+                    "name": "zeros",
+                    "outputs": [
+                                    {
+                                                    "internalType": "bytes32",
+                                                    "name": "",
+                                                    "type": "bytes32"
+                                    }
+                    ],
+                    "stateMutability": "pure",
+                    "type": "function"
+    }
+]
+
   const signer = new ethers.Wallet("0x0dbc2427bcc0c03b4d7568f0ac135b543633c237d06837e8ff6dabc8ca69b3ae", provider)
   const SPcontract = new ethers.Contract(SPcontractAddress, ABI, signer)
-  const tx = await SPcontract.createCommitmentToRegisterENS(commitment)
+  const tx = await SPcontract.createGiftcard(commitment)
   await tx.wait()
   return commitment
 }
