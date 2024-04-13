@@ -105,11 +105,11 @@ async function generateAndVerifyProof(commitments, commitment, mimc) {
     console.log("proof success")
     const cd = convertCallData(await snarkjs.groth16.exportSolidityCallData(proof, publicSignals));
     return {
-        nullifierHash: BigInt(publicSignals[0]),
-        root: BigInt(publicSignals[1]),
-        proof_a: BigInt(cd.a),
-        proof_b: BigInt(cd.b),
-        proof_c: BigInt(cd.c)
+        nullifierHash: (publicSignals[0]),
+        root: (publicSignals[1]),
+        proof_a: (cd.a),
+        proof_b: (cd.b),
+        proof_c: (cd.c)
     }
 }
 // function getVerifierWASM() {

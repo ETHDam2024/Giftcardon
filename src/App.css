@@ -1,28 +1,72 @@
+/* General body styling */
+body {
+  background-color: #f0f5f1; /* Light green background */
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main App container */
 .App {
   text-align: center;
   font-size: larger;
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Gift card styling */
 .gift-card {
-  display: flex; /* Use flexbox layout */
-  align-items: center; /* Center items vertically */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+  border: 1px solid #d9fbe6;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+  background: #ffffff;
 }
 
 .gift-card img {
-  max-width: 100%; /* Limit the width of the image */
-  height: auto; /* Maintain the image's aspect ratio */
+  max-width: 80%;
+  height: auto;
   position: relative;
 }
 
+/* Button enhancements */
 .button {
-  margin-left: 20px; /* Add margin to the left side of the button */
-  font-size: 1.5rem; /* Increase the font size */
-  padding: 10px 20px; /* Add padding around the button content */
-  color: black;
+  background: linear-gradient(45deg, #fda085, #f6d365); /* Gradient from pink to yellow */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  font-family: 'Open Sans', sans-serif;
+
 }
 
+.button:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Important paragraph styling */
 p1 {
   font-weight: bold;
   color: red;
+  font-family: 'Open Sans', sans-serif;
+
 }
 
+h1, h2, h3 {
+  font-family: 'Merriweather', serif;
+}
+
+input[type="text"] {
+  background-color: #ffffff;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj48cmVjdCBmaWxsPSJub25lIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PC9zdmc+'); /* Faint floral pattern */
+  padding: 8px;
+  border-radius: 5px;
+}

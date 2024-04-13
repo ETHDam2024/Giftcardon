@@ -82,7 +82,7 @@ function RedeemGiftCard() {
                     />
                 </label>
                 <br />
-                <button type="submit">Redeem Giftcard</button>
+                <button type="submit" className="button">Redeem Giftcard</button>
             </form>
             <canvas id="canvas"></canvas>
         </div>
