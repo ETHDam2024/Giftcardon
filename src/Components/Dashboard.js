@@ -3,7 +3,7 @@
 import React from 'react';
 
 function Dashboard() {
-  const paymentLink = 'https://buy.stripe.com/test_6oEbMuc4U96K00MdQS';  // Payment Link URL from Stripe
+  const paymentLink = 'https://buy.stripe.com/test_cN2cQy1qg1Ei5l6bIL';  // Payment Link URL from Stripe
 
   return (
     <div>
