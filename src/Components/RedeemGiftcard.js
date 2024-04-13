@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import * as ethers from "https://cdn.jsdelivr.net/npm/ethers@6.11.1/dist/ethers.min.js"
 import { generateAndVerifyProof } from './CommitmentUtils';
 import { buildMimcSponge } from 'https://cdn.jsdelivr.net/npm/circomlibjs@0.1.7/+esm'
-
+import qrcode from 'https://cdn.jsdelivr.net/npm/qrcode@1.5.3/+esm'
 
 function RedeemGiftCard() {
     const [nullifier, setNullifier] = useState('');
@@ -17,7 +17,11 @@ function RedeemGiftCard() {
     // added the fetch commitments function
     useEffect(() => {
         const fetchCommitments = async () => {
-            const retrievedCommitments = await getCommitmentsFromContract();
+            const retrievedCommitments = [
+                "20213380029846934092736468753458529936060405132343672065013361354315475179337",
+                "8542130927197270637691140307654733672868531312734796874632485074007591270766",
+                "20613907653053584058445858265075008311333305433609830861182036082629671155631"
+            ]
             setCommitments(retrievedCommitments);
             console.log("Commitments fetched:", retrievedCommitments);
         };
@@ -38,16 +42,25 @@ function RedeemGiftCard() {
 
 // here the generate and verify proof function needs to go (inside this function the commitment needs to go)
 
+        const canvas = document.getElementById('canvas')
+
 
         // Check if generatedCommitment exists in commitments
-        if (commitments.includes(generatedCommitment)) {
+        if (commitments.includes(generatedCommitment.commitment)) {
             console.log("Commitment validated:", generatedCommitment);
             // Code to generate and send proof
-            await generateAndVerifyProof(commitments, generatedCommitment)
+            const mimc = await buildMimcSponge()
+            const proof = await generateAndVerifyProof(commitments, generatedCommitment, mimc)
+            qrcode.toCanvas(canvas, JSON.stringify(proof
+                ), function (error) {
+        if (error) console.error(error)
+        console.log('success!');
+        })
         } else {
             alert("Invalid nullifier or secret.");
         }
     };
+
 
     return (
         <div>
@@ -75,6 +88,7 @@ function RedeemGiftCard() {
                 <br />
                 <button type="submit">Redeem Giftcard</button>
             </form>
+            <canvas id="canvas"></canvas>
         </div>
     );
 }

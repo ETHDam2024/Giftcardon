@@ -11,6 +11,7 @@
 .gift-card img {
   max-width: 100%; /* Limit the width of the image */
   height: auto; /* Maintain the image's aspect ratio */
+  position: relative;
 }
 
 .button {
@@ -25,6 +26,3 @@ p1 {
   color: red;
 }
 
-p2 {
-
-}

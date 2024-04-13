@@ -1,4 +1,4 @@
-const { buildMimcSponge } = require("circomlibjs")
+// const { buildMimcSponge } = require("circomlibjs")
 // const fs = require("fs")
 const ethers = require("ethers")
 const snarkjs = require("snarkjs")
@@ -45,10 +45,10 @@ function convertCallData(calldata) {
     return { a, b, c, input };
 }
 
-async function calculateMerkleRootAndPath(levels, elements, element = undefined) {
+async function calculateMerkleRootAndPath(levels, elements,mimc,  element = undefined) {
     const capacity = 2 ** levels
     if (elements.length > capacity) throw new Error('Tree is full')
-    const mimc = await buildMimcSponge()
+    // const mimc = await buildMimcSponge()
 
     let layers = []
     layers[0] = elements.slice()
@@ -86,9 +86,8 @@ async function calculateMerkleRootAndPath(levels, elements, element = undefined)
     return root
 }
 
-async function generateAndVerifyProof(commitments, commitment) {
-    const mimc = await buildMimcSponge()
-    const rootAndPath = await calculateMerkleRootAndPath(20, commitments, commitment.commitment)
+async function generateAndVerifyProof(commitments, commitment, mimc) {
+    const rootAndPath = await calculateMerkleRootAndPath(20, commitments, mimc, commitment.commitment)
     console.log("got root and path")
     if (!rootAndPath) {
         return "commitment not found in tree"
