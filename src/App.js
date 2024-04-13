@@ -12,7 +12,6 @@ function App() {
       <div className="App">
         <nav>
         <Link to="/">Dashboard</Link> {/* Add navigation links */}
-        <Link to="/payment-success">Payment Success</Link> {/* navigation link */}
         <Link to="/redeem-giftcard">Redeem Giftcard</Link>
         </nav>
         <Routes>

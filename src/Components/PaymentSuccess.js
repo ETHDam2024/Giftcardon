@@ -1,6 +1,5 @@
 
-import React from 'react';
-import { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { buildMimcSponge } from 'https://cdn.jsdelivr.net/npm/circomlibjs@0.1.7/+esm'
 import * as ethers from "https://cdn.jsdelivr.net/npm/ethers@6.11.1/dist/ethers.min.js"
 
