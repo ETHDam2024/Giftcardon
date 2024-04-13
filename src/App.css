@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-size: larger;
 }
 
 .gift-card {
@@ -16,4 +17,14 @@
   margin-left: 20px; /* Add margin to the left side of the button */
   font-size: 1.5rem; /* Increase the font size */
   padding: 10px 20px; /* Add padding around the button content */
+  color: black;
+}
+
+p1 {
+  font-weight: bold;
+  color: red;
+}
+
+p2 {
+
 }

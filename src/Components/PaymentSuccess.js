@@ -57,7 +57,7 @@ function PaymentSuccess() {
     <div>
       <h2>Payment Successful!</h2>
       <p>Thank you for your purchase. Your payment has been successfully processed.</p>
-      <p>Important: Note down the Nullifier and Secret in a safe way as these inputs are required upon redeeming the Giftcard</p>
+      <p1>Important: Note down the Nullifier and Secret in a safe way - these inputs are required upon redeeming the Giftcard</p1>
       {commitment && (
         <div>
           <p>Commitment: {commitment.commitment}</p>
