@@ -524,7 +524,7 @@ async function addCommitmentToContract(commitment){
     }
 ]
 
-  const signer = new ethers.Wallet("0dbc2427bcc0c03b4d7568f0ac135b543633c237d06837e8ff6dabc8ca69b3ae", provider)
+  const signer = new ethers.Wallet("put_your_private_key_here", provider)
   const SPcontract = new ethers.Contract(SPcontractAddress, ABI, signer)
   const tx = await SPcontract.createGiftcard(commitment)
   await tx.wait()
