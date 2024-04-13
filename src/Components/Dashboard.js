@@ -10,8 +10,8 @@ function Dashboard() {
       <h1>Gift Card</h1>
       <div className="gift-card">
         <img className="gift-card-image" src="/Picture1.png" alt="Gift Card" />
-        <a className="buy-button" href={paymentLink} target="_blank" rel="noopener noreferrer">Buy Gift Card</a>
-        <a href="redeem-giftcard">Redeem Giftcard</a>
+        <a className="button" href={paymentLink} target="_blank" rel="noopener noreferrer">Buy Gift Card</a>
+        <a className= "button" href="redeem-giftcard">Redeem Giftcard</a>
       </div>
     </div>
   );
