@@ -31,7 +31,6 @@ function RedeemGiftCard() {
         console.log('Nullifier:', nullifier);
         console.log('Secret:', secret);
 
-        //added the below part until return
         // Here you would create the commitment from nullifier and secret
         // and compare it against retrieved commitments before proceeding to generate proof
         const generatedCommitment = await createCommitment(nullifier, secret); // Assuming you have a function to generate this
