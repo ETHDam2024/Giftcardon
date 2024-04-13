@@ -44,7 +44,7 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
   margin-top: 20px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans';
 
 }
 
@@ -75,22 +75,35 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid #ccc; /* Simple line below the navbar */
+  font-family: 'Open Sans';
 }
- 
+
 li {
-  float: left;
+  padding: 10px;
+  position: relative;
 }
- 
+
+li:not(:last-child)::after {
+  position: absolute;
+  right: 0;
+  color: rgb(11, 11, 11); /* Adjust color as needed */
+  padding-right: 10px; /* Ensures spacing to the right of the slash */
+}
+
 li a {
   display: block;
-  color: white;
+  color: rgb(4, 4, 4);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  transition: text-decoration 0.3s ease;
+}
+
+li a:hover {
+  text-decoration: underline;
 }
  
-li a:hover {
-  background-color: #111;
-}

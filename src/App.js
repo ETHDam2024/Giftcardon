@@ -10,10 +10,10 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <nav>
-        <Link to="/">Dashboard</Link> {/* Add navigation links */}
-        <Link to="/redeem-giftcard">Redeem Giftcard</Link>
-        </nav>
+        <ul>
+        <li><a href="/">Dashboard</a></li>
+        <li><a href="/redeem-giftcard">Redeem Giftcard</a></li>
+        </ul>
         <Routes>
           <Route path="/" element={<Dashboard />} /> {/* Route for Dashboard */}
           <Route path="/payment-success" element={<PaymentSuccess />} />
