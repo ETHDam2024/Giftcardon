@@ -54,6 +54,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume(){
+        super.onResume()
+        findViewById<TextView>(R.id.tv_balance).visibility = View.VISIBLE
+        fetchBalance()
+    }
+
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraProviderFuture.addListener({
@@ -120,7 +126,7 @@ class MainActivity : AppCompatActivity() {
                     .addOnSuccessListener { barcodes ->
                         for (barcode in barcodes) {
                             val rawValue = barcode.rawValue ?: ""
-                            Log.d("QRCode", "QR Code detected: $rawValue") // Debug log
+                            Log.d("QRCode", "QR Code detected: $rawValue")
                             onQrCodeDetected(rawValue)
                             break
                         }
@@ -140,7 +146,7 @@ class MainActivity : AppCompatActivity() {
     private fun fetchBalance() {
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("https://us-central1-arnacon-nl.cloudfunctions.net/getUserBalance")  // Replace with your Google Cloud Function URL
+            .url("https://us-central1-arnacon-nl.cloudfunctions.net/getUserBalance")
             .build()
 
         client.newCall(request).enqueue(object : okhttp3.Callback {
